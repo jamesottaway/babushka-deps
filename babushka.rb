@@ -1,9 +1,7 @@
-dep 'build dir clean' do
-  met? { in_build_dir { |path| path.children.empty? } }
-  meet { in_build_dir { |path| path.children.each { |child| sudo "rm -rf #{child}" } } }
+dep 'build.clean' do
+  clean in_build_dir {|path| path}
 end
 
-dep 'download dir clean' do
-  met? { in_download_dir { |path| path.children.empty? } }
-  meet { in_download_dir { |path| path.children.each { |child| sudo "rm -rf #{child}" } } }
+dep 'downloads.clean' do
+  clean in_download_dir {|path| path}
 end
