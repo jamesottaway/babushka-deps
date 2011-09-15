@@ -26,17 +26,10 @@ dep 'SickBeard' do
   }
 end
 
-dep 'SickBeard launchagent' do
+dep 'SickBeard.launchagent' do
   requires 'SickBeard'
   define_var :sickbeard_home, :default => '/Applications/SickBeard', :message => 'Where does Sick Beard live?'
-  config = 'https://raw.github.com/gist/aa2d7431902f39803524/303c5bd3713b9ffec537834ef598481f0c39baac/com.sickbeard.sickbeard.plist'
-  launch_agents = '~/Library/LaunchAgents'.to_fancypath
-  plist = launch_agents / 'com.sickbeard.sickbeard.plist'
-  met? { plist.exists? && plist.read[var :sickbeard_home] }
-  meet {
-    Babushka::Resource.get config do |conf|
-      conf.copy plist
-    end
-    shell "sed -i '' 's~$SICKBEARD_HOME~#{var :sickbeard_home}~g' #{plist}"
-  }
+  plist 'com.sickbeard.sickbeard.plist'
+  source 'https://raw.github.com/gist/aa2d7431902f39803524/303c5bd3713b9ffec537834ef598481f0c39baac/com.sickbeard.sickbeard.plist'
+  arguments ({ '$SICKBEARD_HOME' => var(:sickbeard_home) })
 end
