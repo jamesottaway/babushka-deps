@@ -13,13 +13,15 @@ end
 
 dep 'CouchPotato-launchctl.gist' do
   requires 'CouchPotato'
+  set :couchpotato_label, 'com.couchpotato.couchpotato'
   define_var :couchpotato_app, :default => '/Applications/CouchPotato/CouchPotato.app', :message => 'Where does CouchPotato.app live?'
-  source 'https://raw.github.com/gist/fff0bc9d4ca201d7dfd3/8bb886afd026a0112cc6b861dcff51cd76ee8ace/com.couchpotato.couchpotato.plist'
+  set :couchpotato_binary, 'applet'
+  source 'https://gist.github.com/raw/fff0bc9d4ca201d7dfd3/2fa887550afe6cae5a3978405c427d0b39985281/com.app.app.plist'
   destination '~/Library/LaunchAgents/com.couchpotato.couchpotato.plist'
-  arguments ({ '$COUCHPOTATO_APP' => var(:couchpotato_app) })
+  arguments ({ '$LABEL' => var(:couchpotato_label), '$APP' => var(:couchpotato_app), '$BINARY' => var(:couchpotato_binary) })
   after {
     shell 'launchctl load ~/Library/LaunchAgents/com.couchpotato.couchpotato.plist'
-    shell 'launchctl start com.couchpotato.couchpotato.plist'
+    shell "launchctl start #{var(:couchpotato_label)}"
   }
 end
 

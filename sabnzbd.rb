@@ -10,13 +10,15 @@ end
 
 dep 'SABnzbd-launchctl.gist' do
   requires 'SABnzbd.app'
+  set :sabnzbd_label, 'com.sabnzbd.sabnzbd'
   define_var :sabnzbd_app, :default => '/Applications/SABnzbd.app', :message => 'Where does SABnzbd.app live?'
-  source 'https://raw.github.com/gist/a7a12e5d301fd1d0d6e6/a39890035a298a4bdf0d29d40065b6ceba1e1254/com.sabnzbd.sabnzbd.plist'
+  set :sabnzbd_binary, 'SABnzbd'
+  source 'https://gist.github.com/raw/fff0bc9d4ca201d7dfd3/2fa887550afe6cae5a3978405c427d0b39985281/com.app.app.plist'
   destination '~/Library/LaunchAgents/com.sabnzbd.sabnzbd.plist'
-  arguments ({ '$SABNZBD_APP' => var(:sabnzbd_app) })
+  arguments ({ '$LABEL' => var(:sabnzbd_label), '$APP' => var(:sabnzbd_app), '$BINARY' => var(:sabnzbd_binary) })
   after {
     shell 'launchctl load ~/Library/LaunchAgents/com.sabnzbd.sabnzbd.plist'
-    shell 'launchctl start com.sabnzbd.sabnzbd.plist'
+    shell "launchctl start #{var(:sabnzbd_label)}"
   }
 end
 
