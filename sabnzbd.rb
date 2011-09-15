@@ -10,6 +10,6 @@ dep 'SABnzbd.launchagent' do
   requires 'SABnzbd.app'
   define_var :sabnzbd_app, :default => '/Applications/SABnzbd.app', :message => 'Where does SABnzbd.app live?'
   plist 'com.sabnzbd.sabnzbd.plist'
-  source 'https://raw.github.com/gist/a7a12e5d301fd1d0d6e6/a065171b32335ff57ddd753579c8477fda531def/com.sabnzbd.sabnzbd.plist'
+  source 'https://raw.github.com/gist/a7a12e5d301fd1d0d6e6/8a1baa44c4a04c835d8c9d32220eb2acdf3822ff/com.sabnzbd.sabnzbd.plist'
   arguments ({ '$SABNZBD_APP' => var(:sabnzbd_app) })
 end
