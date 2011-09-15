@@ -10,3 +10,11 @@ dep 'CouchPotato' do
     end
   }
 end
+
+dep 'CouchPotato.launchagent' do
+  requires 'CouchPotato'
+  define_var :couchpotato_app, :default => '/Applications/CouchPotato/CouchPotato.app', :message => 'Where does CouchPotato.app live?'
+  plist 'com.couchpotato.couchpotato.plist'
+  source 'https://raw.github.com/gist/fff0bc9d4ca201d7dfd3/8d054820e9383c223c1b7fc407211582ffb712f5/com.couchpotato.couchpotato.plist'
+  arguments ({ '$COUCHPOTATO_APP' => var(:couchpotato_app) })
+end
