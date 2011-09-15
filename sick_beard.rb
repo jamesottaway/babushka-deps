@@ -37,3 +37,35 @@ dep 'SickBeard-launchctl.gist' do
     shell 'launchctl start com.sickbeard.sickbeard.plist'
   }
 end
+
+dep 'SickBeard-config.gist' do
+  requires 'SickBeard'
+  define_var :sickbeard_username, :message => 'Sick Beard Username', :default => 'admin'
+  define_var :sickbeard_password, :message => 'Sick Beard Password'
+  define_var :sabnzbd_username, :message => 'SABnzbd Username'
+  define_var :sabnzbd_password, :message => 'SABnzbd Password'
+  define_var :sabnzbd_host, :message => 'SABnzbd Host', :default => 'locahost'
+  define_var :sabnzbd_port, :message => 'SABnzbd Port', :default => '8080'
+  define_var :sabnzbd_api_key, :message => 'SABnzbd API Key'
+  define_var :sabnzbd_download_dir, :message => 'Where does SABnzbd store completed downloads?'
+  define_var :nzbmatrix_username, :message => 'NZBMatrix Username'
+  define_var :nzbmatrix_api_key, :message => 'NZBMatrix API Key'
+  define_var :twitter_username_token, :message => 'Twitter Username Token'
+  define_var :twitter_password_token, :message => 'Twitter Password Token'
+  source 'https://gist.github.com/raw/7a03b77a9b3e008e8b16/d9ca8ec7df2d8fe23c45c0b4e770b08f8ac3cec9/sickbeard.ini'
+  destination '/Applications/SickBeard/config.ini'
+  arguments ({
+    '$SICKBEARD_USERNAME' => var(:sickbeard_username),
+    '$SICKBEARD_PASSWORD' => var(:sickbeard_password),
+    '$SABNZBD_USERNAME' => var(:sabnzbd_username),
+    '$SABNZBD_PASSWORD' => var(:sabnzbd_password),
+    '$SABNZBD_HOST' => var(:sabnzbd_host),
+    '$SABNZBD_PORT' => var(:sabnzbd_port),
+    '$SABNZBD_API_KEY' => var(:sabnzbd_api_key),
+    '$SABNZBD_DOWNLOAD_DIR' => var(:sabnzbd_download_dir),
+    '$NZBMATRIX_USERNAME' => var(:nzbmatrix_username),
+    '$NZBMATRIX_API_KEY' => var(:nzbmatrix_api_key),
+    '$TWITTER_USERNAME_TOKEN' => var(:twitter_username_token),
+    '$TWITTER_PASSWORD_TOKEN' => var(:twitter_password_token)
+    })
+end
