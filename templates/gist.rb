@@ -6,15 +6,15 @@ meta :gist do
   template {
     setup {
       @destination = destination.to_fancypath
-      @values = arguments.map(&:last)
+      @settings = arguments.map(&:last)
     }
-    met? { @destination.exists? && @values.all? { |value| @destination.read[value] } }
+    met? { @destination.exists? && @settings.all? { |setting| @destination.read[setting] } }
     meet {
       Babushka::Resource.get source do |file|
+        arguments.each do |argument|
+          shell "sed -i '' 's%#{argument.first}%#{argument.last}%g' '#{file}'"
+        end
         file.copy @destination
-      end
-      arguments.each do |argument|
-        shell "sed -i '' 's%#{argument.first}%#{argument.last}%g' '#{@destination}'"
       end
     }
   }
