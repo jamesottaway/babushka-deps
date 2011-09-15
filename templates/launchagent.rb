@@ -19,5 +19,9 @@ meta :launchagent do
         shell "sed -i '' 's~#{argument.first}~#{argument.last}~g' #{@plist}"
       end
     }
+    after {
+      shell "launchctl load #{@plist}"
+      shell "launchctl start #{plist}"
+    }
   }
 end
