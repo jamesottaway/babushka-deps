@@ -14,7 +14,7 @@ meta :gist do
         file.copy @destination
       end
       arguments.each do |argument|
-        shell "sed -i '' 's~#{argument.first}~#{argument.last}~g' #{@destination}"
+        shell "sed -i '' 's~#{argument.first}~#{argument.last}~g' '#{@destination}'"
       end
     }
   }
