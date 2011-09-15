@@ -5,11 +5,11 @@ dep 'vnc password configured' do
   meet { sudo "echo '#{password}' > #{settings}" }
 end
 
-dep 'screen sharing enabled' do
-  met? { sudo('launchctl list')['com.apple.screensharing'] }
-  meet { sudo 'launchctl load -w /System/Library/LaunchDaemons/com.apple.screensharing.plist' }
+dep 'ScreenSharing.launchctl' do
+  label 'com.apple.screensharing'
+  plist '/System/Library/LaunchDaemons/com.apple.screensharing.plist'
 end
 
 dep 'ScreenSharing' do
-  requires 'vnc password configured', 'screen sharing enabled'
+  requires 'vnc password configured', 'ScreenSharing.launchctl'
 end
