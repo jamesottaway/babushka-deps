@@ -65,3 +65,7 @@ dep 'CouchPotato-config.template' do
     '$TWITTER_PASSWORD_TOKEN' => var(:twitter_password_token)
     })
 end
+
+dep 'CouchPotato' do
+  requires 'SABnzbd', 'CouchPotato-config.template', 'CouchPotato-launchctl.template'
+end

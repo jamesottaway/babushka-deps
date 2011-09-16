@@ -66,3 +66,7 @@ dep 'SABnzbd-config.template' do
     '$USENET_RETENTION' => var(:usenet_retention)
     })
 end
+
+dep 'SABnzbd' do
+  requires 'SABnzbd-config.template', 'SABnzbd-launchctl.template'
+end

@@ -76,3 +76,7 @@ dep 'SickBeard-config.template' do
     '$TWITTER_PASSWORD_TOKEN' => var(:twitter_password_token)
     })
 end
+
+dep 'SickBeard' do
+  requires 'SABnzbd', 'SickBeard-config.template', 'SickBeard-launchctl.template'
+end
