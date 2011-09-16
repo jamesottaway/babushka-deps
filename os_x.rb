@@ -42,7 +42,14 @@ dep 'TMShowUnsupportedNetworkVolumes', :template => 'defaults' do
   value '1'
 end
 
+dep 'com.apple.swipescrolldirection', :template => 'defaults' do
+  type 'int'
+  value '0'
+  global? true
+end
+
 dep 'OS X Defaults' do
   requires 'AppleKeyboardUIMode', 'NSNavPanelExpandedStateForSaveMode', 'PMPrintingExpandedStateForPrint',
-  'DSDontWriteNetworkStores', '_FXShowPosixPathInTitle', 'mineffect', 'TMShowUnsupportedNetworkVolumes'
+  'DSDontWriteNetworkStores', '_FXShowPosixPathInTitle', 'mineffect', 'TMShowUnsupportedNetworkVolumes',
+  'com.apple.swipescrolldirection'
 end
