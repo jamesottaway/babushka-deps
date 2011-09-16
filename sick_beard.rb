@@ -40,31 +40,38 @@ end
 
 dep 'SickBeard-config.template' do
   requires 'SickBeard'
+  
   define_var :sickbeard_username, :message => 'Sick Beard Username', :default => 'admin'
   define_var :sickbeard_password, :message => 'Sick Beard Password'
-  define_var :sabnzbd_username, :message => 'SABnzbd Username'
+  define_var :sickbeard_http_port, :message => 'Sick Beard HTTP Port', :default => '8081'
+  define_var :sabnzbd_username, :message => 'SABnzbd Username', :default => 'admin'
   define_var :sabnzbd_password, :message => 'SABnzbd Password'
   define_var :sabnzbd_host, :message => 'SABnzbd Host', :default => 'locahost'
   define_var :sabnzbd_port, :message => 'SABnzbd Port', :default => '8080'
   define_var :sabnzbd_api_key, :message => 'SABnzbd API Key'
-  define_var :sabnzbd_download_dir, :message => 'Where does SABnzbd store completed downloads?'
+  define_var :sabnzbd_complete_downloads_dir, :message => 'Where does SABnzbd store completed downloads?'
   define_var :nzbmatrix_username, :message => 'NZBMatrix Username'
   define_var :nzbmatrix_api_key, :message => 'NZBMatrix API Key'
+  define_var :usenet_retention, :message => 'Usenet Retention'
   define_var :twitter_username_token, :message => 'Twitter Username Token'
   define_var :twitter_password_token, :message => 'Twitter Password Token'
-  source 'https://gist.github.com/raw/7a03b77a9b3e008e8b16/d9ca8ec7df2d8fe23c45c0b4e770b08f8ac3cec9/sickbeard.ini'
+  
+  source 'https://gist.github.com/raw/7a03b77a9b3e008e8b16/1c8b5b07ebddc4b1cdff14468b63ca0f16dc46d3/sickbeard.ini'
   destination '/Applications/SickBeard/config.ini'
+  
   arguments ({
     '$SICKBEARD_USERNAME' => var(:sickbeard_username),
     '$SICKBEARD_PASSWORD' => var(:sickbeard_password),
+    '$SICKBEARD_HTTP_PORT' => var(:sickbeard_http_port),
     '$SABNZBD_USERNAME' => var(:sabnzbd_username),
     '$SABNZBD_PASSWORD' => var(:sabnzbd_password),
     '$SABNZBD_HOST' => var(:sabnzbd_host),
     '$SABNZBD_PORT' => var(:sabnzbd_port),
     '$SABNZBD_API_KEY' => var(:sabnzbd_api_key),
-    '$SABNZBD_DOWNLOAD_DIR' => var(:sabnzbd_download_dir),
+    '$SABNZBD_COMPLETE_DOWNLOADS_DIR' => var(:sabnzbd_complete_downloads_dir),
     '$NZBMATRIX_USERNAME' => var(:nzbmatrix_username),
     '$NZBMATRIX_API_KEY' => var(:nzbmatrix_api_key),
+    '$USENET_RETENTION' => var(:usenet_retention),
     '$TWITTER_USERNAME_TOKEN' => var(:twitter_username_token),
     '$TWITTER_PASSWORD_TOKEN' => var(:twitter_password_token)
     })
