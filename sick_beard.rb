@@ -12,7 +12,7 @@ dep 'cheetah' do
   }
 end
 
-dep 'SickBeard' do
+dep 'SickBeard.app' do
   requires 'cheetah'
   destination = '/Applications'.to_fancypath / name
   met? { destination.exists? && !destination.empty? }
@@ -27,7 +27,7 @@ dep 'SickBeard' do
 end
 
 dep 'SickBeard-launchctl.template' do
-  requires 'SickBeard'
+  requires 'SickBeard.app'
   define_var :sickbeard_home, :default => '/Applications/SickBeard', :message => 'Where does Sick Beard live?'
   source 'https://gist.github.com/raw/aa2d7431902f39803524/c8d0ebca6974e7d16aa5e53670f7e6992f8080a0/com.sickbeard.sickbeard.plist'
   destination '~/Library/LaunchAgents/com.sickbeard.sickbeard.plist'
@@ -39,7 +39,7 @@ dep 'SickBeard-launchctl.template' do
 end
 
 dep 'SickBeard-config.template' do
-  requires 'SickBeard'
+  requires 'SickBeard.app'
   
   define_var :sickbeard_username, :message => 'Sick Beard Username', :default => 'admin'
   define_var :sickbeard_password, :message => 'Sick Beard Password'

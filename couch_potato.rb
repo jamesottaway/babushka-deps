@@ -1,4 +1,4 @@
-dep 'CouchPotato' do
+dep 'CouchPotato.app' do
   destination = '/Applications'.to_fancypath / name
   met? { destination.exists? && !destination.empty? }
   meet {
@@ -12,7 +12,7 @@ dep 'CouchPotato' do
 end
 
 dep 'CouchPotato-launchctl.template' do
-  requires 'CouchPotato'
+  requires 'CouchPotato.app'
   set :couchpotato_label, 'com.couchpotato.couchpotato'
   define_var :couchpotato_app, :default => '/Applications/CouchPotato/CouchPotato.app', :message => 'Where does CouchPotato.app live?'
   set :couchpotato_binary, 'applet'
@@ -26,7 +26,7 @@ dep 'CouchPotato-launchctl.template' do
 end
 
 dep 'CouchPotato-config.template' do
-  requires 'CouchPotato'
+  requires 'CouchPotato.app'
   
   define_var :couchpotato_username, :message => 'Couch Potato Username', :default => 'admin'
   define_var :couchpotato_password, :message => 'Couch Potato Password'
