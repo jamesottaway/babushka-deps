@@ -48,6 +48,13 @@ dep 'com.apple.swipescrolldirection', :template => 'defaults' do
   global? true
 end
 
+dep 'autohide', :template => 'defaults' do
+  domain 'com.apple.dock'
+  type 'int'
+  value '1'
+  after { shell 'killall Dock' }
+end
+
 dep 'OS X Defaults' do
   requires 'AppleKeyboardUIMode', 'NSNavPanelExpandedStateForSaveMode', 'PMPrintingExpandedStateForPrint',
   'DSDontWriteNetworkStores', '_FXShowPosixPathInTitle', 'mineffect', 'TMShowUnsupportedNetworkVolumes',
