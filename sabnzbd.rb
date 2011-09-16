@@ -36,7 +36,7 @@ dep 'SABnzbd-config.template' do
   define_var :usenet_password, :message => 'Usenet Password'
   define_var :usenet_num_connections, :message => 'Usenet Number of Connection', :default => '20'
   define_var :usenet_use_ssl, :message => 'Usenet SSL?', :default => '1'
-  source 'https://raw.github.com/gist/125aa788d32f14ecad61/3a09ccc5398f0d319084be68e554f00587886248/sabnzbd.ini'
+  source 'https://gist.github.com/raw/125aa788d32f14ecad61/3a09ccc5398f0d319084be68e554f00587886248/sabnzbd.ini'
   destination '~/Library/Application Support/SABnzbd/sabnzbd.ini'
   arguments ({
     '$SABNZBD_USERNAME' => var(:sabnzbd_username),
