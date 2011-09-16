@@ -27,7 +27,7 @@ end
 
 dep 'SickBeard-launchctl.template' do
   requires 'SickBeard.app'
-  source 'https://gist.github.com/raw/aa2d7431902f39803524/c8d0ebca6974e7d16aa5e53670f7e6992f8080a0/com.sickbeard.sickbeard.plist'
+  template 'https://gist.github.com/raw/aa2d7431902f39803524/c8d0ebca6974e7d16aa5e53670f7e6992f8080a0/com.sickbeard.sickbeard.plist'
   destination '~/Library/LaunchAgents/com.sickbeard.sickbeard.plist'
   arguments ({ '$SICKBEARD_HOME' => var(:sickbeard_home).to_s })
   after {
@@ -54,7 +54,7 @@ dep 'SickBeard-config.template' do
   define_var :twitter_username_token, :message => 'Twitter Username Token'
   define_var :twitter_password_token, :message => 'Twitter Password Token'
   
-  source 'https://gist.github.com/raw/7a03b77a9b3e008e8b16/1c8b5b07ebddc4b1cdff14468b63ca0f16dc46d3/sickbeard.ini'
+  template 'https://gist.github.com/raw/7a03b77a9b3e008e8b16/1c8b5b07ebddc4b1cdff14468b63ca0f16dc46d3/sickbeard.ini'
   destination '/Applications/SickBeard/config.ini'
   
   arguments ({

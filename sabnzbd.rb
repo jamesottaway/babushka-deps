@@ -13,7 +13,7 @@ dep 'SABnzbd-launchctl.template' do
   set :sabnzbd_label, 'com.sabnzbd.sabnzbd'
   set :sabnzbd_app, var(:sabnzbd_home)
   set :sabnzbd_binary, 'SABnzbd'
-  source 'https://gist.github.com/raw/fff0bc9d4ca201d7dfd3/2fa887550afe6cae5a3978405c427d0b39985281/com.app.app.plist'
+  template 'https://gist.github.com/raw/fff0bc9d4ca201d7dfd3/2fa887550afe6cae5a3978405c427d0b39985281/com.app.app.plist'
   destination '~/Library/LaunchAgents/com.sabnzbd.sabnzbd.plist'
   arguments ({ '$LABEL' => var(:sabnzbd_label), '$APP' => var(:sabnzbd_app).to_s, '$BINARY' => var(:sabnzbd_binary) })
   after {
@@ -43,7 +43,7 @@ dep 'SABnzbd-config.template' do
   define_var :usenet_use_ssl, :message => 'Usenet SSL?', :choice_descriptions => { '1' => 'Yes', '0' => 'No' }
   define_var :usenet_retention, :message => 'Usenet Retention'
   
-  source 'https://gist.github.com/raw/125aa788d32f14ecad61/6a3261b0b5d36a79b47e771a6c47e5bb764948c3/sabnzbd.ini'
+  template 'https://gist.github.com/raw/125aa788d32f14ecad61/6a3261b0b5d36a79b47e771a6c47e5bb764948c3/sabnzbd.ini'
   destination '~/Library/Application Support/SABnzbd/sabnzbd.ini'
   
   arguments ({

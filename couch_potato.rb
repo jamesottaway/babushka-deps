@@ -15,7 +15,7 @@ dep 'CouchPotato-launchctl.template' do
   set :couchpotato_label, 'com.couchpotato.couchpotato'
   set :couchpotato_app, var(:couchpotato_home) / 'CouchPotato.app'
   set :couchpotato_binary, 'applet'
-  source 'https://gist.github.com/raw/fff0bc9d4ca201d7dfd3/2fa887550afe6cae5a3978405c427d0b39985281/com.app.app.plist'
+  template 'https://gist.github.com/raw/fff0bc9d4ca201d7dfd3/2fa887550afe6cae5a3978405c427d0b39985281/com.app.app.plist'
   destination '~/Library/LaunchAgents/com.couchpotato.couchpotato.plist'
   arguments ({ '$LABEL' => var(:couchpotato_label), '$APP' => var(:couchpotato_app).to_s, '$BINARY' => var(:couchpotato_binary) })
   after {
@@ -43,7 +43,7 @@ dep 'CouchPotato-config.template' do
   define_var :twitter_username_token, :message => 'Twitter Username Token'
   define_var :twitter_password_token, :message => 'Twitter Password Token'
   
-  source 'https://gist.github.com/raw/80ac401612dd56db2317/cc9286d2bf033dd64480878d33ba254926a2baec/couchpotato.ini'
+  template 'https://gist.github.com/raw/80ac401612dd56db2317/cc9286d2bf033dd64480878d33ba254926a2baec/couchpotato.ini'
   destination '/Applications/CouchPotato/config.ini'
   
   arguments ({

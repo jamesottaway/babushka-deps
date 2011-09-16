@@ -1,5 +1,5 @@
 meta :template do
-  accepts_value_for :source
+  accepts_value_for :template
   accepts_value_for :destination
   accepts_value_for :arguments
   
@@ -10,7 +10,7 @@ meta :template do
     }
     met? { @destination.exists? && @settings.all? { |setting| @destination.read[setting] } }
     meet {
-      Babushka::Resource.get source do |file|
+      Babushka::Resource.get template do |file|
         file.copy @destination
         arguments.map do |argument|
           shell "sed -i '' 's%#{argument.first}%#{argument.last}%g' '#{@destination}'"
