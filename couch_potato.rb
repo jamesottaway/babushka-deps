@@ -11,7 +11,7 @@ dep 'CouchPotato' do
   }
 end
 
-dep 'CouchPotato-launchctl.gist' do
+dep 'CouchPotato-launchctl.template' do
   requires 'CouchPotato'
   set :couchpotato_label, 'com.couchpotato.couchpotato'
   define_var :couchpotato_app, :default => '/Applications/CouchPotato/CouchPotato.app', :message => 'Where does CouchPotato.app live?'
@@ -25,7 +25,7 @@ dep 'CouchPotato-launchctl.gist' do
   }
 end
 
-dep 'CouchPotato-config.gist' do
+dep 'CouchPotato-config.template' do
   requires 'CouchPotato'
   define_var :couchpotato_username, :message => 'Couch Potato Username', :default => 'admin'
   define_var :couchpotato_password, :message => 'Couch Potato Password'

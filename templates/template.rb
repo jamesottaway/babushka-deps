@@ -1,4 +1,4 @@
-meta :gist do
+meta :template do
   accepts_value_for :source
   accepts_value_for :destination
   accepts_value_for :arguments
