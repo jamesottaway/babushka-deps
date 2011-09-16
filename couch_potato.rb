@@ -67,5 +67,5 @@ dep 'CouchPotato-config.template' do
 end
 
 dep 'CouchPotato' do
-  requires 'SABnzbd', 'CouchPotato-config.template', 'CouchPotato-launchctl.template'
+  requires 'SABnzbd', 'CouchPotato-launchctl.template', 'CouchPotato-config.template'
 end

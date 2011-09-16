@@ -78,5 +78,5 @@ dep 'SickBeard-config.template' do
 end
 
 dep 'SickBeard' do
-  requires 'SABnzbd', 'SickBeard-config.template', 'SickBeard-launchctl.template'
+  requires 'SABnzbd', 'SickBeard-launchctl.template', 'SickBeard-config.template'
 end

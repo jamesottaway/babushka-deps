@@ -68,5 +68,5 @@ dep 'SABnzbd-config.template' do
 end
 
 dep 'SABnzbd' do
-  requires 'SABnzbd-config.template', 'SABnzbd-launchctl.template'
+  requires 'SABnzbd-launchctl.template', 'SABnzbd-config.template'
 end
