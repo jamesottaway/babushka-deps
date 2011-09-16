@@ -11,10 +11,10 @@ meta :template do
     met? { @destination.exists? && @settings.all? { |setting| @destination.read[setting] } }
     meet {
       Babushka::Resource.get source do |file|
-        arguments.each do |argument|
-          shell "sed -i '' 's%#{argument.first}%#{argument.last}%g' '#{file}'"
-        end
         file.copy @destination
+        arguments.map do |argument|
+          shell "sed -i '' 's%#{argument.first}%#{argument.last}%g' '#{@destination}'"
+        end
       end
     }
   }
