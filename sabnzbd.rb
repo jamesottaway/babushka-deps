@@ -43,7 +43,7 @@ dep 'SABnzbd-config.template' do
   define_var :usenet_use_ssl, :message => 'Usenet SSL?', :choice_descriptions => { '1' => 'Yes', '0' => 'No' }
   define_var :usenet_retention, :message => 'Usenet Retention'
   
-  source 'https://gist.github.com/raw/125aa788d32f14ecad61/3a09ccc5398f0d319084be68e554f00587886248/sabnzbd.ini'
+  source 'https://gist.github.com/raw/125aa788d32f14ecad61/6a3261b0b5d36a79b47e771a6c47e5bb764948c3/sabnzbd.ini'
   destination '~/Library/Application Support/SABnzbd/sabnzbd.ini'
   
   arguments ({
