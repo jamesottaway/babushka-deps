@@ -29,7 +29,7 @@ dep 'SABnzbd-config.template' do
   define_var :sabnzbd_password, :message => 'SABnzbd Password'
   define_var :sabnzbd_api_key, :message => 'SABnzbd API Key', :default => SecureRandom.hex
   define_var :sabnzbd_nzb_key, :message => 'SABnzbd NZB Key', :default => SecureRandom.hex
-  define_var :sabnzbd_http_port, :message => 'SABnzbd HTTP Port', :default => '88080'
+  define_var :sabnzbd_http_port, :message => 'SABnzbd HTTP Port', :default => '8080'
   define_var :sabnzbd_https_port, :message => 'SABnzbd HTTPS Port', :default => '9090'
   define_var :sabnzbd_pending_downloads_dir, :message => 'SABnzbd Pending Downloads Dir'
   define_var :sabnzbd_complete_downloads_dir, :message => 'SABnzbd Complete Downloads Dir'
@@ -39,8 +39,8 @@ dep 'SABnzbd-config.template' do
   define_var :usenet_port, :message => 'Usenet Port'
   define_var :usenet_username, :message => 'Usenet Username'
   define_var :usenet_password, :message => 'Usenet Password'
-  define_var :usenet_connections_limit, :message => 'Usenet Connections Limit', :default => '20'
-  define_var :usenet_use_ssl, :message => 'Usenet SSL?', :default => '1'
+  define_var :usenet_connections_limit, :message => 'Usenet Connections Limit'
+  define_var :usenet_use_ssl, :message => 'Usenet SSL?', :choice_descriptions => { '1' => 'Yes', '0' => 'No' }
   define_var :usenet_retention, :message => 'Usenet Retention'
   
   source 'https://gist.github.com/raw/125aa788d32f14ecad61/3a09ccc5398f0d319084be68e554f00587886248/sabnzbd.ini'
