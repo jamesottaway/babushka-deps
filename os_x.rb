@@ -43,9 +43,9 @@ dep 'TMShowUnsupportedNetworkVolumes', :template => 'defaults' do
 end
 
 dep 'com.apple.swipescrolldirection', :template => 'defaults' do
+  domain '~/Library/Preferences/.GlobalPreferences'
   type 'int'
-  value '0'
-  global? true
+  value '1'
 end
 
 dep 'autohide', :template => 'defaults' do
