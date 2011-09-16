@@ -58,5 +58,5 @@ end
 dep 'OS X Defaults' do
   requires 'AppleKeyboardUIMode', 'NSNavPanelExpandedStateForSaveMode', 'PMPrintingExpandedStateForPrint',
   'DSDontWriteNetworkStores', '_FXShowPosixPathInTitle', 'mineffect', 'TMShowUnsupportedNetworkVolumes',
-  'com.apple.swipescrolldirection'
+  'com.apple.swipescrolldirection', 'autohide'
 end
