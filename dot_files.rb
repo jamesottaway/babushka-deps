@@ -4,6 +4,8 @@ dep 'dot files.cloned' do
 end
 
 dep 'dot files symlinked' do
+  requires 'dot files.cloned'
+  
   def home_dir
     '~'.to_fancypath
   end
