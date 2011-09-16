@@ -1,11 +1,10 @@
 dep 'CouchPotato.app' do
-  destination = '/Applications'.to_fancypath / name
-  met? { destination.exists? && !destination.empty? }
+  met? { var(:couchpotato_home).exists? && !var(:couchpotato_home).empty? }
   meet {
     handle_source 'git://github.com/RuudBurger/CouchPotato.git' do |repo|
       in_build_dir do |build_dir|
         app = build_dir / repo.basename
-        app.copy destination
+        app.copy var(:couchpotato_home)
       end
     end
   }
@@ -14,11 +13,11 @@ end
 dep 'CouchPotato-launchctl.template' do
   requires 'CouchPotato.app'
   set :couchpotato_label, 'com.couchpotato.couchpotato'
-  define_var :couchpotato_app, :default => '/Applications/CouchPotato/CouchPotato.app', :message => 'Where does CouchPotato.app live?'
+  set :couchpotato_app, var(:couchpotato_home) / 'CouchPotato.app'
   set :couchpotato_binary, 'applet'
   source 'https://gist.github.com/raw/fff0bc9d4ca201d7dfd3/2fa887550afe6cae5a3978405c427d0b39985281/com.app.app.plist'
   destination '~/Library/LaunchAgents/com.couchpotato.couchpotato.plist'
-  arguments ({ '$LABEL' => var(:couchpotato_label), '$APP' => var(:couchpotato_app), '$BINARY' => var(:couchpotato_binary) })
+  arguments ({ '$LABEL' => var(:couchpotato_label), '$APP' => var(:couchpotato_app).to_s, '$BINARY' => var(:couchpotato_binary) })
   after {
     shell 'launchctl load ~/Library/LaunchAgents/com.couchpotato.couchpotato.plist'
     shell "launchctl start #{var(:couchpotato_label)}"
@@ -67,5 +66,6 @@ dep 'CouchPotato-config.template' do
 end
 
 dep 'CouchPotato' do
+  set :couchpotato_home, '/Applications/CouchPotato'.to_fancypath
   requires 'SABnzbd', 'CouchPotato-launchctl.template', 'CouchPotato-config.template'
 end

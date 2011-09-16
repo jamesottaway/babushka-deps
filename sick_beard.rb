@@ -14,13 +14,12 @@ end
 
 dep 'SickBeard.app' do
   requires 'cheetah'
-  destination = '/Applications'.to_fancypath / name
-  met? { destination.exists? && !destination.empty? }
+  met? { var(:sickbeard_home).exists? && !var(:sickbeard_home).empty? }
   meet {
     handle_source 'git://github.com/midgetspy/Sick-Beard.git' do |repo|
       in_build_dir do |build_dir|
         app = build_dir / repo.basename
-        app.copy destination
+        app.copy var(:sickbeard_home)
       end
     end
   }
@@ -28,10 +27,9 @@ end
 
 dep 'SickBeard-launchctl.template' do
   requires 'SickBeard.app'
-  define_var :sickbeard_home, :default => '/Applications/SickBeard', :message => 'Where does Sick Beard live?'
   source 'https://gist.github.com/raw/aa2d7431902f39803524/c8d0ebca6974e7d16aa5e53670f7e6992f8080a0/com.sickbeard.sickbeard.plist'
   destination '~/Library/LaunchAgents/com.sickbeard.sickbeard.plist'
-  arguments ({ '$SICKBEARD_HOME' => var(:sickbeard_home) })
+  arguments ({ '$SICKBEARD_HOME' => var(:sickbeard_home).to_s })
   after {
     shell 'launchctl load ~/Library/LaunchAgents/com.sickbeard.sickbeard.plist'
     shell 'launchctl start com.sickbeard.sickbeard.plist'
@@ -78,5 +76,6 @@ dep 'SickBeard-config.template' do
 end
 
 dep 'SickBeard' do
+  set :sickbeard_home, '/Applications/SickBeard'.to_fancypath
   requires 'SABnzbd', 'SickBeard-launchctl.template', 'SickBeard-config.template'
 end
