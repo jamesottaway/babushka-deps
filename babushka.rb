@@ -8,6 +8,8 @@ end
 
 dep 'deps up-to-date' do
   repo = Babushka::GitRepo.new '~/.babushka/deps'
-  met? { repo.clean? or unmeetable("There are local changes in #{repo.path}.") }
+  setup { !repo.ahead? or unmeetable("There are local changes in #{repo.path}.") }
+  met? { !repo.behind? }
+  before { repo.repo_shell 'git fetch origin' }
   meet { repo.reset_hard! 'origin/master' }
 end
