@@ -2,14 +2,10 @@ require 'securerandom'
 
 dep 'SABnzbd.app' do
   source 'http://downloads.sourceforge.net/project/sabnzbdplus/sabnzbdplus/sabnzbd-0.6.9/SABnzbd-0.6.9-osx-lion.dmg?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fsabnzbdplus%2Ffiles%2Fsabnzbdplus%2Fsabnzbd-0.6.9%2F&ts=1316039666&use_mirror=internode'
-end
-
-dep 'SABnzbd.app', :for => :snow_leopard do
-  source 'http://downloads.sourceforge.net/project/sabnzbdplus/sabnzbdplus/sabnzbd-0.6.9/SABnzbd-0.6.9-osx.dmg?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fsabnzbdplus%2Ffiles%2Fsabnzbdplus%2Fsabnzbd-0.6.9%2F&ts=1316039619&use_mirror=internode'
+  requires_when_unmet 'SABnzbd-launchctl.template', 'SABnzbd-config.template'
 end
 
 dep 'SABnzbd-launchctl.template' do
-  requires 'SABnzbd.app'
   set :sabnzbd_label, 'com.sabnzbd.sabnzbd'
   set :sabnzbd_app, var(:sabnzbd_home)
   set :sabnzbd_binary, 'SABnzbd'
@@ -20,8 +16,6 @@ dep 'SABnzbd-launchctl.template' do
 end
 
 dep 'SABnzbd-config.template' do
-  requires 'SABnzbd.app'
-  
   define_var :sabnzbd_username, :message => 'SABnzbd Username', :default => 'admin'
   define_var :sabnzbd_password, :message => 'SABnzbd Password'
   define_var :sabnzbd_api_key, :message => 'SABnzbd API Key', :default => SecureRandom.hex
@@ -66,5 +60,5 @@ end
 
 dep 'SABnzbd' do
   set :sabnzbd_home, '/Applications/SABnzbd.app'
-  requires 'SABnzbd.app', 'SABnzbd-launchctl.template', 'SABnzbd-config.template'
+  requires 'SABnzbd.app'
 end

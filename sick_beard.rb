@@ -15,6 +15,7 @@ end
 dep 'SickBeard.app' do
   requires 'cheetah'
   met? { var(:sickbeard_home).exists? && !var(:sickbeard_home).empty? }
+  requires_when_unmet 'SickBeard-launchctl.template', 'SickBeard-config.template'
   meet {
     handle_source 'git://github.com/midgetspy/Sick-Beard.git' do |repo|
       in_build_dir do |build_dir|
@@ -26,7 +27,6 @@ dep 'SickBeard.app' do
 end
 
 dep 'SickBeard-launchctl.template' do
-  requires 'SickBeard.app'
   template 'https://gist.github.com/raw/aa2d7431902f39803524/c8d0ebca6974e7d16aa5e53670f7e6992f8080a0/com.sickbeard.sickbeard.plist'
   destination '~/Library/LaunchAgents/com.sickbeard.sickbeard.plist'
   arguments ({ '$SICKBEARD_HOME' => var(:sickbeard_home).to_s })
@@ -34,8 +34,6 @@ dep 'SickBeard-launchctl.template' do
 end
 
 dep 'SickBeard-config.template' do
-  requires 'SickBeard.app'
-  
   define_var :sickbeard_username, :message => 'Sick Beard Username', :default => 'admin'
   define_var :sickbeard_password, :message => 'Sick Beard Password'
   define_var :sickbeard_http_port, :message => 'Sick Beard HTTP Port', :default => '8081'
@@ -70,5 +68,5 @@ end
 
 dep 'SickBeard' do
   set :sickbeard_home, '/Applications/SickBeard'.to_fancypath
-  requires 'SickBeard.app', 'SickBeard-launchctl.template', 'SickBeard-config.template'
+  requires 'SickBeard.app'
 end

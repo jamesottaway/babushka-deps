@@ -1,5 +1,6 @@
 dep 'CouchPotato.app' do
   met? { var(:couchpotato_home).exists? && !var(:couchpotato_home).empty? }
+  requires_when_unmet 'CouchPotato-launchctl.template', 'CouchPotato-config.template'
   meet {
     handle_source 'git://github.com/RuudBurger/CouchPotato.git' do |repo|
       in_build_dir do |build_dir|
@@ -11,7 +12,6 @@ dep 'CouchPotato.app' do
 end
 
 dep 'CouchPotato-launchctl.template' do
-  requires 'CouchPotato.app'
   set :couchpotato_label, 'com.couchpotato.couchpotato'
   set :couchpotato_app, var(:couchpotato_home) / 'CouchPotato.app'
   set :couchpotato_binary, 'applet'
@@ -22,8 +22,6 @@ dep 'CouchPotato-launchctl.template' do
 end
 
 dep 'CouchPotato-config.template' do
-  requires 'CouchPotato.app'
-  
   define_var :couchpotato_username, :message => 'Couch Potato Username', :default => 'admin'
   define_var :couchpotato_password, :message => 'Couch Potato Password'
   define_var :couchpotato_http_port, :message => 'Couch Potato HTTP Port', :default => '5000'
@@ -60,5 +58,5 @@ end
 
 dep 'CouchPotato' do
   set :couchpotato_home, '/Applications/CouchPotato'.to_fancypath
-  requires 'CouchPotato.app', 'CouchPotato-launchctl.template', 'CouchPotato-config.template'
+  requires 'CouchPotato.app'
 end
