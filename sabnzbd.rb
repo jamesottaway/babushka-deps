@@ -16,10 +16,7 @@ dep 'SABnzbd-launchctl.template' do
   template 'https://gist.github.com/raw/fff0bc9d4ca201d7dfd3/2fa887550afe6cae5a3978405c427d0b39985281/com.app.app.plist'
   destination '~/Library/LaunchAgents/com.sabnzbd.sabnzbd.plist'
   arguments ({ '$LABEL' => var(:sabnzbd_label), '$APP' => var(:sabnzbd_app).to_s, '$BINARY' => var(:sabnzbd_binary) })
-  after {
-    shell 'launchctl load ~/Library/LaunchAgents/com.sabnzbd.sabnzbd.plist'
-    shell "launchctl start #{var(:sabnzbd_label)}"
-  }
+  after { shell 'launchctl load ~/Library/LaunchAgents/com.sabnzbd.sabnzbd.plist' }
 end
 
 dep 'SABnzbd-config.template' do
@@ -69,5 +66,5 @@ end
 
 dep 'SABnzbd' do
   set :sabnzbd_home, '/Applications/SABnzbd.app'
-  requires 'SABnzbd-launchctl.template', 'SABnzbd-config.template'
+  requires 'SABnzbd.app', 'SABnzbd-launchctl.template', 'SABnzbd-config.template'
 end

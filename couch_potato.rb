@@ -18,10 +18,7 @@ dep 'CouchPotato-launchctl.template' do
   template 'https://gist.github.com/raw/fff0bc9d4ca201d7dfd3/2fa887550afe6cae5a3978405c427d0b39985281/com.app.app.plist'
   destination '~/Library/LaunchAgents/com.couchpotato.couchpotato.plist'
   arguments ({ '$LABEL' => var(:couchpotato_label), '$APP' => var(:couchpotato_app).to_s, '$BINARY' => var(:couchpotato_binary) })
-  after {
-    shell 'launchctl load ~/Library/LaunchAgents/com.couchpotato.couchpotato.plist'
-    shell "launchctl start #{var(:couchpotato_label)}"
-  }
+  after { shell 'launchctl load ~/Library/LaunchAgents/com.couchpotato.couchpotato.plist' }
 end
 
 dep 'CouchPotato-config.template' do
@@ -67,5 +64,5 @@ end
 
 dep 'CouchPotato' do
   set :couchpotato_home, '/Applications/CouchPotato'.to_fancypath
-  requires 'CouchPotato-launchctl.template', 'CouchPotato-config.template'
+  requires 'CouchPotato.app', 'CouchPotato-launchctl.template', 'CouchPotato-config.template'
 end

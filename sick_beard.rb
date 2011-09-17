@@ -30,10 +30,7 @@ dep 'SickBeard-launchctl.template' do
   template 'https://gist.github.com/raw/aa2d7431902f39803524/c8d0ebca6974e7d16aa5e53670f7e6992f8080a0/com.sickbeard.sickbeard.plist'
   destination '~/Library/LaunchAgents/com.sickbeard.sickbeard.plist'
   arguments ({ '$SICKBEARD_HOME' => var(:sickbeard_home).to_s })
-  after {
-    shell 'launchctl load ~/Library/LaunchAgents/com.sickbeard.sickbeard.plist'
-    shell 'launchctl start com.sickbeard.sickbeard.plist'
-  }
+  after { shell 'launchctl load ~/Library/LaunchAgents/com.sickbeard.sickbeard.plist' }
 end
 
 dep 'SickBeard-config.template' do
@@ -77,5 +74,5 @@ end
 
 dep 'SickBeard' do
   set :sickbeard_home, '/Applications/SickBeard'.to_fancypath
-  requires 'SickBeard-launchctl.template', 'SickBeard-config.template'
+  requires 'SickBeard.app', 'SickBeard-launchctl.template', 'SickBeard-config.template'
 end
