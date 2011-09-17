@@ -58,5 +58,5 @@ end
 
 dep 'CouchPotato' do
   set :couchpotato_home, '/Applications/CouchPotato'.to_fancypath
-  requires 'CouchPotato.app'
+  requires 'SABnzbd', 'CouchPotato.app'
 end

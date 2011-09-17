@@ -68,5 +68,5 @@ end
 
 dep 'SickBeard' do
   set :sickbeard_home, '/Applications/SickBeard'.to_fancypath
-  requires 'SickBeard.app'
+  requires 'SABnzbd', 'SickBeard.app'
 end
