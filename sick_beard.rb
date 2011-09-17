@@ -48,10 +48,8 @@ dep 'SickBeard-config.template' do
   define_var :nzbmatrix_username, :message => 'NZBMatrix Username'
   define_var :nzbmatrix_api_key, :message => 'NZBMatrix API Key'
   define_var :usenet_retention, :message => 'Usenet Retention'
-  define_var :twitter_username_token, :message => 'Twitter Username Token'
-  define_var :twitter_password_token, :message => 'Twitter Password Token'
   
-  template 'https://gist.github.com/raw/7a03b77a9b3e008e8b16/1c8b5b07ebddc4b1cdff14468b63ca0f16dc46d3/sickbeard.ini'
+  template 'https://gist.github.com/raw/7a03b77a9b3e008e8b16/8a180c35b1bed409a293db294a05fc6c24c58dc8/sickbeard.ini'
   destination '/Applications/SickBeard/config.ini'
   
   arguments ({
@@ -66,9 +64,7 @@ dep 'SickBeard-config.template' do
     '$SABNZBD_COMPLETE_DOWNLOADS_DIR' => var(:sabnzbd_complete_downloads_dir),
     '$NZBMATRIX_USERNAME' => var(:nzbmatrix_username),
     '$NZBMATRIX_API_KEY' => var(:nzbmatrix_api_key),
-    '$USENET_RETENTION' => var(:usenet_retention),
-    '$TWITTER_USERNAME_TOKEN' => var(:twitter_username_token),
-    '$TWITTER_PASSWORD_TOKEN' => var(:twitter_password_token)
+    '$USENET_RETENTION' => var(:usenet_retention)
     })
 end
 

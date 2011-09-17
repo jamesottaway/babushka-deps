@@ -37,10 +37,8 @@ dep 'CouchPotato-config.template' do
   define_var :nzbmatrix_username, :message => 'NZBMatrix Username'
   define_var :nzbmatrix_api_key, :message => 'NZBMatrix API Key'
   define_var :usenet_retention, :message => 'Usenet Retention'
-  define_var :twitter_username_token, :message => 'Twitter Username Token'
-  define_var :twitter_password_token, :message => 'Twitter Password Token'
   
-  template 'https://gist.github.com/raw/80ac401612dd56db2317/cc9286d2bf033dd64480878d33ba254926a2baec/couchpotato.ini'
+  template 'https://gist.github.com/raw/80ac401612dd56db2317/745769deecbc9ee964c7370bd90027277791d394/couchpotato.ini'
   destination '/Applications/CouchPotato/config.ini'
   
   arguments ({
@@ -56,9 +54,7 @@ dep 'CouchPotato-config.template' do
     '$PLEX_MOVIES_DIR' => var(:plex_movies_dir),
     '$NZBMATRIX_USERNAME' => var(:nzbmatrix_username),
     '$NZBMATRIX_API_KEY' => var(:nzbmatrix_api_key),
-    '$USENET_RETENTION' => var(:usenet_retention),
-    '$TWITTER_USERNAME_TOKEN' => var(:twitter_username_token),
-    '$TWITTER_PASSWORD_TOKEN' => var(:twitter_password_token)
+    '$USENET_RETENTION' => var(:usenet_retention)
     })
 end
 
