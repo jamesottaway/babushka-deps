@@ -67,5 +67,5 @@ end
 
 dep 'CouchPotato' do
   set :couchpotato_home, '/Applications/CouchPotato'.to_fancypath
-  requires 'SABnzbd', 'CouchPotato-launchctl.template', 'CouchPotato-config.template'
+  requires 'CouchPotato-launchctl.template', 'CouchPotato-config.template'
 end

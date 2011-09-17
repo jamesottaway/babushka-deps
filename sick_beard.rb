@@ -77,5 +77,5 @@ end
 
 dep 'SickBeard' do
   set :sickbeard_home, '/Applications/SickBeard'.to_fancypath
-  requires 'SABnzbd', 'SickBeard-launchctl.template', 'SickBeard-config.template'
+  requires 'SickBeard-launchctl.template', 'SickBeard-config.template'
 end
