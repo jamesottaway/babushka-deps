@@ -7,3 +7,7 @@ end
 dep 'bootstrap' do
   requires 'babushka-deps.cloned'
 end
+
+dep 'remote tools' do
+  requires 'Screen Sharing', 'Remote Login'
+end

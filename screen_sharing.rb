@@ -10,6 +10,6 @@ dep 'ScreenSharing.launchctl' do
   plist '/System/Library/LaunchDaemons/com.apple.screensharing.plist'
 end
 
-dep 'ScreenSharing' do
+dep 'Screen Sharing' do
   requires 'vnc password configured', 'ScreenSharing.launchctl'
 end

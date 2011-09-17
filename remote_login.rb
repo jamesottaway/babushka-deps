@@ -3,6 +3,6 @@ dep 'RemoteLogin.launchctl' do
   plist '/System/Library/LaunchDaemons/ssh.plist'
 end
 
-dep 'RemoteLogin' do
+dep 'Remote Login' do
   requires 'RemoteLogin.launchctl'
 end
