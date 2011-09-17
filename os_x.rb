@@ -59,4 +59,5 @@ dep 'OS X Defaults' do
   requires 'AppleKeyboardUIMode', 'NSNavPanelExpandedStateForSaveMode', 'PMPrintingExpandedStateForPrint',
   'DSDontWriteNetworkStores', '_FXShowPosixPathInTitle', 'mineffect', 'TMShowUnsupportedNetworkVolumes',
   'com.apple.swipescrolldirection', 'autohide'
+  after { shell 'chflags nohidden ~/Library' }
 end
