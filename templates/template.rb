@@ -9,6 +9,7 @@ meta :template do
       @settings = arguments.map(&:last)
     }
     met? { @destination.exists? && @settings.all? { |setting| @destination.read[setting] } }
+    before { @destination.parent.mkdir unless @destination.parent.exists? }
     meet {
       Babushka::Resource.get template do |file|
         file.copy @destination
